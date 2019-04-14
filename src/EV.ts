@@ -256,6 +256,7 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
       tag?: EVListenerTag;
     }
   ) {
+    handler();
     return this.on(type, (handler as any), option);
   }
 

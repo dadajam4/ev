@@ -87,38 +87,51 @@ describe('on', () => {
 });
 
 describe('immediate', () => {
-  it('should can immediate', () => {
+  it('should can immediate - basic', () => {
     const ev = new EV<{ test: number }>();
+    let immediateCheckValue = 0;
     const listeners = getListeners(ev);
-    const listener1 = ev.immediate('test', () => {});
+    const listener1 = ev.immediate('test', () => {
+      immediateCheckValue++;
+    });
     const listener2 = ev.on('test', (a) => {
       const b: number = a;
       console.log(b);
+      immediateCheckValue++;
     });
+    expect(immediateCheckValue).toStrictEqual(1);
     expect(listeners.length).toStrictEqual(2);
     expect(listeners[0]).toStrictEqual(listener1);
     expect(listeners[1]).toStrictEqual(listener2);
   });
 
-  it('should can once immediate', () => {
+  it('should can immediate - valiations', () => {
     const ev = new EV<{ test: number, fuga: boolean }>();
+    let immediateCheckValue = 0;
     const listeners = getListeners(ev);
-    const listener1 = ev.immediate('test', () => {});
+    const listener1 = ev.immediate('test', () => {
+      immediateCheckValue++;
+    });
     const listener2 = ev.on('test', (a) => {
       const b: number = a;
+      immediateCheckValue++;
       console.log(b);
     });
     const listener3 = ev.once('test', (a) => {
       const b: number = a;
+      immediateCheckValue++;
       console.log(b);
     });
+    expect(immediateCheckValue).toStrictEqual(1);
     expect(listeners.length).toStrictEqual(3);
     expect(listeners[0]).toStrictEqual(listener1);
     expect(listeners[1]).toStrictEqual(listener2);
     expect(listeners[2]).toStrictEqual(listener3);
     ev.emit('fuga', true);
+    expect(immediateCheckValue).toStrictEqual(1);
     expect(listeners.length).toStrictEqual(3);
     ev.emit('test', 5);
+    expect(immediateCheckValue).toStrictEqual(4);
     expect(listeners.length).toStrictEqual(2);
   });
 });
