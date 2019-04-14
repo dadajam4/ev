@@ -104,22 +104,20 @@ describe('immediate', () => {
     const ev = new EV<{ test: number, fuga: boolean }>();
     const listeners = getListeners(ev);
     const listener1 = ev.immediate('test', () => {});
-    const listener2 = ev.immediateAndOnce('test', () => {});
-    const listener3 = ev.on('test', (a) => {
+    const listener2 = ev.on('test', (a) => {
       const b: number = a;
       console.log(b);
     });
-    const listener4 = ev.once('test', (a) => {
+    const listener3 = ev.once('test', (a) => {
       const b: number = a;
       console.log(b);
     });
-    expect(listeners.length).toStrictEqual(4);
+    expect(listeners.length).toStrictEqual(3);
     expect(listeners[0]).toStrictEqual(listener1);
     expect(listeners[1]).toStrictEqual(listener2);
     expect(listeners[2]).toStrictEqual(listener3);
-    expect(listeners[3]).toStrictEqual(listener4);
     ev.emit('fuga', true);
-    expect(listeners.length).toStrictEqual(4);
+    expect(listeners.length).toStrictEqual(3);
     ev.emit('test', 5);
     expect(listeners.length).toStrictEqual(2);
   });
