@@ -1,8 +1,9 @@
 {
   "name": "@dadajam4/ev",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple event observer.",
   "scripts": {
+    "prepublish": "npm run build && npm run docs && npm run test",
     "docs": "rimraf ./docs && typedoc src --out docs --includeDeclarations --excludeExternals --mode modules && touch ./docs/.nojekyll",
     "test": "jest --config=jest.config.json --notify --coverage --detectOpenHandles",
     "build": "plugboy"
