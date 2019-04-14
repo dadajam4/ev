@@ -1,6 +1,6 @@
 {
   "name": "@dadajam4/ev",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple event observer.",
   "scripts": {
     "docs": "rimraf ./docs && typedoc src --out docs --includeDeclarations --excludeExternals --mode modules && touch ./docs/.nojekyll",

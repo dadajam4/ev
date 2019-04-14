@@ -38,7 +38,7 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
      * @param handler
      * @param option
      */
-    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option: {
+    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option?: {
         tag?: EVListenerTag;
         once?: boolean;
     }): EVListener;
@@ -48,7 +48,7 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
      * @param handler
      * @param option
      */
-    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option: {
+    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option?: {
         tag?: EVListenerTag;
         once?: boolean;
     }): EVListener;
@@ -59,7 +59,7 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
      * @param option
      * @param once
      */
-    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option: {
+    on<K extends keyof EventMap>(type: K, handler: (ev: EventMap[K]) => any, option?: {
         tag?: EVListenerTag;
     }, once?: boolean): EVListener;
     /**
@@ -67,7 +67,7 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
      * @param type
      * @param option
      */
-    on<K extends keyof EventMap>(type: K, option: {
+    on<K extends keyof EventMap>(type: K, option?: {
         handler: ((ev: EventMap[K]) => any);
         tag?: EVListenerTag;
         once?: boolean;
@@ -125,15 +125,9 @@ export default class EV<EventMap extends EVEventMap = EVEventMap> {
      * @param type
      * @param handler
      */
-    immediate<K extends keyof EventMap>(type: K, handler: () => any): EVListener;
-    /**
-     * Create and return listener instance by type, handler. This will be done immediately.
-     * When registering this hook, do not expect the payload to be passed to the callback method.
-     * This listener is deleted when it detects an event only once.
-     * @param type
-     * @param handler
-     */
-    immediateAndOnce<K extends keyof EventMap>(type: K, handler: () => any): EVListener;
+    immediate<K extends keyof EventMap>(type: K, handler: () => any, option?: {
+        tag?: EVListenerTag;
+    }): EVListener;
     /**
      * Remove listener by type
      * @param type
