@@ -1,6 +1,6 @@
 {
   "name": "@dadajam4/ev",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Simple event observer.",
   "scripts": {
     "prepublish": "npm run build && npm run docs && npm run test",

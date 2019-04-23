@@ -71,8 +71,8 @@ describe('on', () => {
       e3: boolean;
     }>();
 
-    ev.on('e1', p => expect(p).toStrictEqual(1));
-    ev.on('e1', p => expect(p).toStrictEqual(1), { tag: 'tag1' });
+    ev.on('e1', p => expect(p).toBeUndefined());
+    ev.on('e1', p => expect(p).toBeUndefined(), { tag: 'tag1' });
     ev.on('e2', { handler: p => expect(p).toStrictEqual('str') });
     ev.on('e3', p => expect(p).toStrictEqual(true));
     ev.on('e3', {

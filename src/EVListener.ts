@@ -42,6 +42,7 @@ export default class EVListener {
    * Remove this instance from parent context.
    */
   remove() {
+    if (!this._remover) return;
     this._remover(this);
 
     const self = this as any;
