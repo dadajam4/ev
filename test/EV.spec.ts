@@ -66,7 +66,7 @@ describe('on', () => {
     expect.assertions(5);
 
     const ev = new EV<{
-      e1: number;
+      e1?: void;
       e2: string;
       e3: boolean;
     }>();
@@ -80,7 +80,7 @@ describe('on', () => {
       tag: 'tag2',
     });
 
-    ev.emit('e1', 1);
+    ev.emit('e1', void 0);
     ev.emit('e2', 'str');
     ev.emit('e3', true);
   });
